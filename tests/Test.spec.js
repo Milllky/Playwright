@@ -24,7 +24,7 @@ test('Успешная авторизация', async () => {
     // Проверка перехода в профиль
     await page.locator('[data-testid="login-submit-btn"]');
     await expect(page).toHaveURL("https://netology.ru/profile/");
-    const heading = page.locator("h2");
+    const heading = await page.locator("h2");
     await expect(heading).toHaveText("Мое обучение");
 
 });
@@ -48,6 +48,6 @@ test('Неуспешная авторизация', async () => {
     // Отправка запроса
     await page.click('text ="Войти"');
     // Проверка ошибки
-    const errorHint = page.locator('[data-testid="login-error-hint"]');
+    const errorHint = await page.locator('[data-testid="login-error-hint"]');
     await expect(errorHint).toHaveText("Вы ввели неправильно логин или пароль.")
 });
